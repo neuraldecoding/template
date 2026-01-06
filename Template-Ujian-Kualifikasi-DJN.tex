@@ -1,0 +1,291 @@
+% Template LaTeX untuk Ujian Kualifikasi
+% Program Studi Doktor Informatika
+% Universitas Telkom
+
+% Document Class
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[english,indonesian]{babel}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+
+% Page Setup
+\geometry{
+    top=3cm,
+    bottom=3cm,
+    left=4cm,
+    right=3cm
+}
+
+% Title Formatting
+\titleformat{\section}
+    {\normalfont\fontsize{14}{16}\bfseries\centering}{\thesection}{1em}{}
+    
+\titleformat{\subsection}
+    {\normalfont\fontsize{12}{14}\bfseries}{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+    {\normalfont\fontsize{12}{14}\normalfont}{\thesubsubsection}{1em}{}
+
+% Spacing
+\onehalfspacing
+\sectionsep{\baselineskip}
+\subsectionsep{\baselineskip}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{%
+    \fontsize{10}{12}\selectfont
+    Tahap I Ujian Kualifikasi - Program Studi Doktor Informatika
+}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Universitas Telkom}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+% Custom Commands
+\newcommand{\myTitle}[1]{\def\@myTitle{#1}}
+\newcommand{\myName}{\def\@myName}
+\newcommand{\myNIM}{\def\@myNIM}
+\newcommand{\myYear}{\def\@myYear}
+
+% Redefine title
+\makeatletter
+\renewcommand{\maketitletwo}{
+    \begin{center}
+        % Judul Disertasi
+        {\fontsize{16}{19}\bfseries\@myTitle\vspace{2ex}\par}
+        
+        % Tahap I Ujian Kualifikasi
+        {\fontsize{12}{14}\bfseries Tahap I Ujian Kualifikasi\vspace{1ex}\par}
+        
+        % NIM dan Nama
+        {\fontsize{12}{14}\selectfont
+        \begin{tabular}{c}
+            NIM: \@myNIM \\[\baselineskip]
+            \@myName
+        \end{tabular}\vspace{1ex}\par}
+        
+        % Program Studi
+        {\fontsize{12}{14}\bfseries
+        Program Studi Doktor Informatika\\
+        Fakultas Informatika - Universitas Telkom\\
+        Bandung\\
+        \@myYear
+        \par}
+    \end{center}
+    
+    \vspace{2ex}
+    \hrule
+    \vspace{2ex}
+}
+\makeatother
+
+% SOTA Table Environment
+\newenvironment{sototable}
+    {\begin{table}[htbp]
+    \centering
+    \caption{State-of-the-Art Penelitian}
+    \label{tab:sota}}
+    {\end{table}}
+
+% Word Count Environments
+\newenvironment{summary}
+    {\textit{Ringkasan (200-300 kata):}\\[0.5\baselineskip]}
+    {}
+
+\newenvironment{background}
+    {\textit{Latar Belakang dan Motivasi (100-200 kata):}\\[0.5\baselineskip]}
+    {}
+
+\newenvironment{literaturereview}
+    {\textit{Ringkasan Penelitian Terkait (100-200 kata):}\\[0.5\baselineskip]}
+    {}
+
+\newenvironment{researchgap}
+    {\textit{Potensi Gap Penelitian (100-200 kata):}\\[0.5\baselineskip]}
+    {}
+
+\newenvironment{novelty}
+    {\textit{Potensi Kebaruan Penelitian (400-500 kata):}\\[0.5\baselineskip]}
+    {}
+
+% Bibliography Style
+\usepackage[
+    backend=biber,
+    style=apa,
+    sorting=nyt
+]{biblatex}
+
+\addbibresource{references.bib}
+
+% Beginning of Document
+\begin{document}
+
+% Use Times New Roman as default font
+\rmfamily
+
+% Title Page
+\maketitletwo
+
+% RINGKASAN
+\section*{RINGKASAN}
+\addcontentsline{toc}{section}{RINGKASAN}
+
+\begin(summary}
+Silakan tuliskan ringkasan berisi 200 kata sampai 300 kata dalam satu paragraf, yang menjelaskan latar belakang penelitian disertasi secara umum, tujuan, metode yang akan diusulkan atau akan digunakan, rencana kontribusi dari penelitian disertasi Anda.
+
+Paragraf ringkasan harus mencakup:
+\begin{itemize}[leftmargin=*]
+    \item Konteks dan latar belakang penelitian
+    \item Tujuan utama penelitian disertasi
+    \item Metodologi yang diusulkan
+    \item Kontribusi yang diharapkan dari penelitian
+\end{itemize}
+\end(summary}
+
+% PENDAHULUAN
+\section*{PENDAHULUAN}
+\addcontentsline{toc}{section}{PENDAHULUAN}
+
+\subsection{Latar Belakang dan Motivasi Penelitian}
+
+\begin{background}
+Pada bagian ini, jelaskan \textit{rationale} atau motivasi yang melatarbelakangi pemilihan topik penelitian disertasi. Bagian ini dapat menjelaskan tren penelitian atau berdasarkan referensi dari topik yang menjadi minat Anda. Sertakan juga rujukan dari referensi yang menjadi acuan latar belakang penelitian disertasi Anda.
+
+\textbf{Isi:} 100-200 kata, minimal 1 paragraf.
+\end{background}
+
+\subsection{Ringkasan Penelitian Terkait}
+
+\begin{literaturereview}
+Bagian ini berisi \textit{brief literature review}. Jelaskan penelitian-penelitian terkait hasil telaah terhadap penelitian sebelumnya yang paling mendekati dengan topik atau latar belakang disertasi Anda. Jelaskan juga keunggulan dan kekurangan dari penelitian sebelumnya, serta peluang penelitian lanjutan. Sertakan sitasi dari referensi utama.
+
+\textbf{Isi:} 100-200 kata, minimal 2-3 paragraf.
+\end{literaturereview}
+
+\subsection{Potensi Gap Penelitian atau Masalah yang Akan Diangkat}
+
+\begin{researchgap}
+Pada bagian ini, tuliskan identifikasi permasalahan atau potensi gap dari fenomena yang akan diangkat dalam disertasi berdasarkan latar belakang dan penelitian terkait. Jelaskan kesenjangan yang belum teratasi oleh penelitian sebelumnya dan bagaimana penelitian Anda akan mengatasinya.
+
+\textbf{Isi:} 100-200 kata, minimal 1 paragraf.
+\end{researchgap}
+
+\subsection{Potensi Kebaruan dari Penelitian yang Akan Dilakukan}
+
+\begin{novelty}
+Pada bagian ini, tuliskan bagaimana Anda membuktikan bahwa penelitian yang diajukan adalah baru dan orisinal (\textit{novel dan original}). Bagian ini dapat diisi dengan hasil \textit{systematic mapping study} atau \textit{meta analysis} untuk memetakan usulan topik disertasi terhadap teori atau metode terkini, sehingga dapat dibuktikan \textit{novelty} dan \textit{originality}-nya.
+
+\textbf{Isi:} 400-500 kata, minimal 3-5 paragraf.
+\end{novelty}
+
+% LITERATURE REVIEW
+\section*{LITERATURE REVIEW}
+\addcontentsline{toc}{section}{LITERATURE REVIEW}
+
+\subsection{State-of-the-Art Penelitian}
+
+Bagian ini menjabarkan hasil \textit{systematic literature review} terhadap referensi utama serta yang berkaitan dengan topik penelitian disertasi. Bagian ini ditulis minimal \textbf{4000 kata} dan maksimal \textbf{5000 kata}, dalam beberapa paragraf (fleksibel).
+
+Pada bagian ini \textbf{diakhiri dengan tabel} \textit{state-of-the-art} yang berisi ringkasan dari hasil \textit{systematic literature review}. Sumber pustaka atau referensi primer yang relevan dengan mengutamakan hasil penelitian ilmiah atau teknologi yang terkini. Disarankan penggunaan sumber pustaka 5 tahun terakhir (untuk prosiding konferensi) dan 10 tahun terakhir (bergantung pada relevansi teori atau metode) untuk jurnal atau buku teks.
+
+Pada bagian akhir tabel, sebutkan usulan penelitian disertasi Anda untuk melihat posisi penelitian Anda dalam \textit{state-of-the-art} penelitian.
+
+\begin{sototable}
+    \begin{tabular}{|>{\centering\arraybackslash}p{0.05\textwidth}|>{\centering\arraybackslash}p{0.18\textwidth}|>{\centering\arraybackslash}p{0.22\textwidth}|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+    \toprule
+    \textbf{No} & \textbf{Peneliti} & \textbf{Objective (Significance)} & \textbf{Metode dan Hasil} & \textbf{Keterangan} \\
+    \midrule
+    1 & (Lawoyin et al., 2014) & Analisis sistem Holter EEG 3D secara real-time & Pengolahan sinyal EEG dengan HPF, NFFT, dan representasi spectrogram. Klasifikasi dengan SVM berdasarkan image spectrogram & Metode dasar \\
+    \midrule
+    2 & (Nama Peneliti, Tahun) & Tujuan/Signifikansi penelitian & Metode yang digunakan dan hasil yang diperoleh & Keunggulan/Keterbatasan \\
+    \midrule
+    3 & & & & \\
+    \midrule
+    4 & & & & \\
+    \midrule
+    5 & & & & \\
+    \bottomrule
+    \end{tabular}
+\end{sototable}
+
+Berdasarkan \textit{state-of-the-art} yang dibuat, berikan penjelasan tentang potensi gap penelitian yang dapat diangkat untuk penelitian disertasi Anda. Gunakan lebih dari satu tabel \textit{state-of-the-art} jika terdapat beberapa metode atau teori yang digunakan dari hasil eksplorasi Anda.
+
+% TEORI / METODE TERKAIT
+\section*{TEORI / METODE TERKAIT}
+\addcontentsline{toc}{section}{TEORI / METODE TERKAIT}
+
+Pada bagian ini, tuliskan minimal \textbf{3000 kata} dan maksimal \textbf{4000 kata} dalam sub-bab atau beberapa paragraf. Tuliskan secara padat dan ringkas mengenai pemahaman atau penguasaan Anda terhadap teori atau metode yang relevan dan digunakan dalam disertasi.
+
+Misalnya, jika dalam disertasi digunakan \textit{intelligent control system} dengan \textit{Fuzzy Logic Type II}, tuliskan bagian-bagian penting tentang \textit{Fuzzy Logic Type II} yang digunakan dalam \textit{intelligent control system}.
+
+\subsection{Teori Dasar}
+
+Jelaskan teori-teori dasar yang menjadi fondasi penelitian Anda. Pastikan penjelasan mencakup:
+\begin{itemize}[leftmargin=*]
+    \item Definisi dan konsep fundamental
+    \item Prinsip-prinsip utama
+    \item Rumusan matematis yang relevan
+    \item Asumsi-asumsi yang digunakan
+\end{itemize}
+
+\subsection{Metodologi Penelitian}
+
+Jelaskan metodologi penelitian yang akan digunakan, mencakup:
+\begin{itemize}[leftmargin=*]
+    \item Pendekatan penelitian
+    \item Teknik pengumpulan data
+    \item Metode analisis
+    \item Validasi dan verifikasi
+\end{itemize}
+
+\subsection{Alat dan Kerangka Kerja}
+
+Jelaskan alat, kerangka kerja, atau infrastruktur yang mendukung penelitian Anda.
+
+% DAFTAR PUSTAKA
+\section*{DAFTAR PUSTAKA}
+\addcontentsline{toc}{section}{DAFTAR PUSTAKA}
+
+Penulis dapat mendata semua daftar pustaka yang dipergunakan untuk menyusun kajian pustaka. Gunakan \textit{Reference Manager} untuk men-generate sitasi dan referensi secara otomatis.
+
+%\printbibliography[heading=subbibintoc]
+
+% Contoh format manual (jika tidak menggunakan BibTeX/Biber):
+%\begin{thebibliography}{99}
+%
+%\bibitem{lawoyin2014}
+%Lawoyin, S. A., Fei, D.-Y., \& Bai, O. (2014).
+%A Novel Application of Inertial Measurement Units (IMUs) as Vehicular Technologies for Drowsy Driving Detection via Steering Wheel Movement.
+%\textit{Open Journal of Safety Science and Technology}, \textit{04}(04), 166–177.
+%\url{https://doi.org/10.4236/ojsst.2014.44018}
+%
+%\bibitem{peneliti2}
+%Nama Peneliti. (Tahun).
+%Judul artikel atau buku.
+%Nama Jurnal atau Penerbit.
+%
+%\end{thebibliography}
+
+\end{document}
