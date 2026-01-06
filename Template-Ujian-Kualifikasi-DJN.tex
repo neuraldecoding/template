@@ -21,6 +21,7 @@
 \usepackage{enumitem}
 \usepackage{parskip}
 \usepackage{fancyhdr}
+\usepackage{tocloft}
 
 % Page Setup
 \geometry{
@@ -42,62 +43,87 @@
 
 % Spacing
 \onehalfspacing
-\sectionsep{\baselineskip}
-\subsectionsep{\baselineskip}
 
 % Header/Footer
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[C]{%
-    \fontsize{10}{12}\selectfont
-    Tahap I Ujian Kualifikasi - Program Studi Doktor Informatika
-}
 \fancyfoot[C]{\thepage}
-\fancyfoot[R]{Universitas Telkom}
+\renewcommand{\headrulewidth}{0pt}
 
 % Hyperref setup
 \hypersetup{
     colorlinks=true,
-    linkcolor=blue,
+    linkcolor=black,
     filecolor=magenta,
     urlcolor=cyan,
 }
 
+% Table of Contents customization
+\renewcommand{\contentsname}{DAFTAR ISI}
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+% Subsection numbering format
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
 % Custom Commands
 \newcommand{\myTitle}[1]{\def\@myTitle{#1}}
-\newcommand{\myName}{\def\@myName}
-\newcommand{\myNIM}{\def\@myNIM}
-\newcommand{\myYear}{\def\@myYear}
+\newcommand{\myName}[1]{\def\@myName{#1}}
+\newcommand{\myNIM}[1]{\def\@myNIM{#1}}
+\newcommand{\myYear}[1]{\def\@myYear{#1}}
 
 % Redefine title
 \makeatletter
-\renewcommand{\maketitletwo}{
-    \begin{center}
-        % Judul Disertasi
-        {\fontsize{16}{19}\bfseries\@myTitle\vspace{2ex}\par}
+% Initialize default values
+\def\@myTitle{Judul Disertasi}
+\def\@myNIM{NIM}
+\def\@myName{Nama Mahasiswa}
+\def\@myYear{Tahun}
+
+\renewcommand{\maketitle}{
+    \begin{titlepage}
+        \centering
+        \vspace*{0.5cm}
         
-        % Tahap I Ujian Kualifikasi
-        {\fontsize{12}{14}\bfseries Tahap I Ujian Kualifikasi\vspace{1ex}\par}
+        % Judul Disertasi (bagian atas)
+        {\fontsize{16}{20}\selectfont
+        \textbf{Judul Disertasi: Dituliskan Singkat dan Spesifik (Tuliskan semua judul disertasi.}\par
+        \textbf{Secara umum untuk menjelaskan judul proposal penelitian dapat mengikuti pola:}\par
+        \textbf{Metode yang diusulkan -- Tujuan -- Objek area area of interest)}\par}
+        
+        \vspace{1.5cm}
+        
+        % Tahap Ujian Kualifikasi
+        {\fontsize{12}{14}\selectfont
+        \textbf{Tahap I Ujian Kualifikasi}\par}
+        
+        \vspace{1.5cm}
         
         % NIM dan Nama
         {\fontsize{12}{14}\selectfont
-        \begin{tabular}{c}
-            NIM: \@myNIM \\[\baselineskip]
-            \@myName
-        \end{tabular}\vspace{1ex}\par}
+        \textbf{\@myNIM}\par
+        \textbf{\@myName}\par}
         
-        % Program Studi
-        {\fontsize{12}{14}\bfseries
-        Program Studi Doktor Informatika\\
-        Fakultas Informatika - Universitas Telkom\\
-        Bandung\\
-        \@myYear
-        \par}
-    \end{center}
-    
-    \vspace{2ex}
-    \hrule
-    \vspace{2ex}
+        \vspace{1.5cm}
+        
+        % Logo Universitas Telkom
+        \IfFileExists{logo-telkom.png}{
+            \includegraphics[width=0.35\textwidth]{logo-telkom.png}
+        }{
+            {\fontsize{16}{19}\bfseries Universitas Telkom\par}
+        }
+        
+        \vspace{1.5cm}
+        
+        % Program Studi dan Informasi
+        {\fontsize{16}{19}\selectfont
+        \textbf{Program Studi Doktor Informatika}\par
+        \textbf{Fakultas Informatika -- Universitas Telkom}\par
+        \textbf{Bandung}\par
+        \textbf{2026}\par}
+        
+    \end{titlepage}
+    \newpage
 }
 \makeatother
 
@@ -132,12 +158,18 @@
 
 % Bibliography Style
 \usepackage[
-    backend=biber,
-    style=apa,
+    backend=bibtex,
+    style=numeric,
     sorting=nyt
 ]{biblatex}
 
 \addbibresource{references.bib}
+
+% Set document metadata
+\myTitle{Judul Disertasi Anda}
+\myNIM{1234567890}
+\myName{Nama Lengkap Anda}
+\myYear{2026}
 
 % Beginning of Document
 \begin{document}
@@ -146,13 +178,18 @@
 \rmfamily
 
 % Title Page
-\maketitletwo
+\maketitle
+
+% DAFTAR ISI
+\addcontentsline{toc}{section}{DAFTAR ISI}
+\tableofcontents
+\clearpage
 
 % RINGKASAN
 \section*{RINGKASAN}
 \addcontentsline{toc}{section}{RINGKASAN}
 
-\begin(summary}
+\begin{summary}
 Silakan tuliskan ringkasan berisi 200 kata sampai 300 kata dalam satu paragraf, yang menjelaskan latar belakang penelitian disertasi secara umum, tujuan, metode yang akan diusulkan atau akan digunakan, rencana kontribusi dari penelitian disertasi Anda.
 
 Paragraf ringkasan harus mencakup:
@@ -162,11 +199,15 @@ Paragraf ringkasan harus mencakup:
     \item Metodologi yang diusulkan
     \item Kontribusi yang diharapkan dari penelitian
 \end{itemize}
-\end(summary}
+\end{summary}
 
-% PENDAHULUAN
-\section*{PENDAHULUAN}
-\addcontentsline{toc}{section}{PENDAHULUAN}
+\clearpage
+
+% BAB 1 - PENDAHULUAN
+\setcounter{section}{0}
+\section*{BAB 1 \\ PENDAHULUAN}
+\addcontentsline{toc}{section}{BAB 1 PENDAHULUAN}
+\refstepcounter{section}
 
 \subsection{Latar Belakang dan Motivasi Penelitian}
 
@@ -200,9 +241,12 @@ Pada bagian ini, tuliskan bagaimana Anda membuktikan bahwa penelitian yang diaju
 \textbf{Isi:} 400-500 kata, minimal 3-5 paragraf.
 \end{novelty}
 
-% LITERATURE REVIEW
-\section*{LITERATURE REVIEW}
-\addcontentsline{toc}{section}{LITERATURE REVIEW}
+\clearpage
+
+% BAB 2 - LITERATURE REVIEW
+\section*{BAB 2 \\ LITERATURE REVIEW}
+\addcontentsline{toc}{section}{BAB 2 LITERATURE REVIEW}
+\refstepcounter{section}
 
 \subsection{State-of-the-Art Penelitian}
 
@@ -232,9 +276,12 @@ Pada bagian akhir tabel, sebutkan usulan penelitian disertasi Anda untuk melihat
 
 Berdasarkan \textit{state-of-the-art} yang dibuat, berikan penjelasan tentang potensi gap penelitian yang dapat diangkat untuk penelitian disertasi Anda. Gunakan lebih dari satu tabel \textit{state-of-the-art} jika terdapat beberapa metode atau teori yang digunakan dari hasil eksplorasi Anda.
 
-% TEORI / METODE TERKAIT
-\section*{TEORI / METODE TERKAIT}
-\addcontentsline{toc}{section}{TEORI / METODE TERKAIT}
+\clearpage
+
+% BAB 3 - TEORI / METODE TERKAIT
+\section*{BAB 3 \\ TEORI / METODE TERKAIT}
+\addcontentsline{toc}{section}{BAB 3 TEORI / METODE TERKAIT}
+\refstepcounter{section}
 
 Pada bagian ini, tuliskan minimal \textbf{3000 kata} dan maksimal \textbf{4000 kata} dalam sub-bab atau beberapa paragraf. Tuliskan secara padat dan ringkas mengenai pemahaman atau penguasaan Anda terhadap teori atau metode yang relevan dan digunakan dalam disertasi.
 
@@ -265,27 +312,10 @@ Jelaskan metodologi penelitian yang akan digunakan, mencakup:
 Jelaskan alat, kerangka kerja, atau infrastruktur yang mendukung penelitian Anda.
 
 % DAFTAR PUSTAKA
+\clearpage
 \section*{DAFTAR PUSTAKA}
 \addcontentsline{toc}{section}{DAFTAR PUSTAKA}
 
-Penulis dapat mendata semua daftar pustaka yang dipergunakan untuk menyusun kajian pustaka. Gunakan \textit{Reference Manager} untuk men-generate sitasi dan referensi secara otomatis.
-
-%\printbibliography[heading=subbibintoc]
-
-% Contoh format manual (jika tidak menggunakan BibTeX/Biber):
-%\begin{thebibliography}{99}
-%
-%\bibitem{lawoyin2014}
-%Lawoyin, S. A., Fei, D.-Y., \& Bai, O. (2014).
-%A Novel Application of Inertial Measurement Units (IMUs) as Vehicular Technologies for Drowsy Driving Detection via Steering Wheel Movement.
-%\textit{Open Journal of Safety Science and Technology}, \textit{04}(04), 166–177.
-%\url{https://doi.org/10.4236/ojsst.2014.44018}
-%
-%\bibitem{peneliti2}
-%Nama Peneliti. (Tahun).
-%Judul artikel atau buku.
-%Nama Jurnal atau Penerbit.
-%
-%\end{thebibliography}
+\printbibliography[heading=none]
 
 \end{document}
