@@ -64,3 +64,6 @@ Template ini sudah diatur otomatis menghasilkan format:
 - **Error "Language indonesian not found"**: Abaikan saja jika PDF tetap ter-generate. Ini warning minor dari package biblatex.
 - **Tanda Tanya (?) pada referensi**: Jalankan `bibtex` lalu `pdflatex` 2x lagi.
 - **Judul Daftar Isi bukan "DAFTAR ISI"**: Pastikan perintah `\renewcommand{\contentsname}{DAFTAR ISI}` tetap ada setelah `\begin{document}`.
+
+##  Lisensi
+Template ini didistribusikan di bawah lisensi **GNU General Public License v3.0** (GPLv3). Lihat file LICENSE untuk informasi lebih lanjut.
