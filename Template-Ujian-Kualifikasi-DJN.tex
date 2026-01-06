@@ -22,6 +22,7 @@
 \usepackage{parskip}
 \usepackage{fancyhdr}
 \usepackage{tocloft}
+\usepackage{tabularx}
 
 % Page Setup
 \geometry{
@@ -261,23 +262,37 @@ Pada bagian ini \textbf{diakhiri dengan tabel} \textit{state-of-the-art} yang be
 
 Pada bagian akhir tabel, sebutkan usulan penelitian disertasi Anda untuk melihat posisi penelitian Anda dalam \textit{state-of-the-art} penelitian.
 
-\begin{sototable}
-    \begin{tabular}{|>{\centering\arraybackslash}p{0.05\textwidth}|>{\centering\arraybackslash}p{0.18\textwidth}|>{\centering\arraybackslash}p{0.22\textwidth}|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\begin{table}[htbp]
+    \caption{State-of-the-Art Penelitian}
+    \label{tab:sota}
+    \small
+    \begin{tabularx}{\textwidth}{@{} c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}l @{}}
     \toprule
-    \textbf{No} & \textbf{Peneliti} & \textbf{Objective (Significance)} & \textbf{Metode dan Hasil} & \textbf{Keterangan} \\
+    \textbf{No} & \textbf{Peneliti} & \textbf{Objective} & \textbf{Metode \& Hasil} & \textbf{Keterangan} \\
     \midrule
-    1 & (Lawoyin et al., 2014) & Analisis sistem Holter EEG 3D secara real-time & Pengolahan sinyal EEG dengan HPF, NFFT, dan representasi spectrogram. Klasifikasi dengan SVM berdasarkan image spectrogram & Metode dasar \\
-    \midrule
-    2 & (Nama Peneliti, Tahun) & Tujuan/Signifikansi penelitian & Metode yang digunakan dan hasil yang diperoleh & Keunggulan/Keterbatasan \\
-    \midrule
-    3 & & & & \\
-    \midrule
-    4 & & & & \\
-    \midrule
-    5 & & & & \\
+    
+    1 & \textcite{lawoyin2014} & 
+    Analisis sistem Holter EEG 3D secara real-time. & 
+    Pengolahan sinyal EEG dengan HPF, NFFT. Klasifikasi SVM. & 
+    Metode dasar \\
+    
+    \addlinespace
+    
+    2 & \textcite{example2023} & 
+    Meningkatkan akurasi deteksi kantuk. & 
+    Menggunakan Deep Learning (CNN) dengan dataset XYZ. Akurasi 95\%. & 
+    Metode modern \\
+    
+    \addlinespace
+    
+    3 & \textcite{textbook2020} & 
+    Teori dasar pengukuran sinyal biomedis. & 
+    Menjelaskan prinsip kerja EEG dan EKG konvensional. & 
+    Referensi teori \\
+    
     \bottomrule
-    \end{tabular}
-\end{sototable}
+    \end{tabularx}
+\end{table}
 
 Berdasarkan \textit{state-of-the-art} yang dibuat, berikan penjelasan tentang potensi gap penelitian yang dapat diangkat untuk penelitian disertasi Anda. Gunakan lebih dari satu tabel \textit{state-of-the-art} jika terdapat beberapa metode atau teori yang digunakan dari hasil eksplorasi Anda.
 
@@ -304,7 +319,17 @@ Jelaskan teori-teori dasar yang menjadi fondasi penelitian Anda. Pastikan penjel
 
 \subsection{Metodologi Penelitian}
 
-Jelaskan metodologi penelitian yang akan digunakan, mencakup:
+Jelaskan metodologi penelitian yang akan digunakan, mencakup pendekatan penelitian, teknik pengumpulan data, dan analisis.
+
+\begin{figure}[htbp]
+    \centering
+    % Menggunakan logo-telkom.png sebagai dummy image
+    \includegraphics[width=0.5\textwidth]{logo-telkom.png}
+    \caption{Contoh Diagram Alir Penelitian (Dummy Figure)}
+    \label{fig:alur_penelitian}
+\end{figure}
+
+Setelah Gambar \ref{fig:alur_penelitian}, jelaskan langkah-langkah detailnya:
 \begin{itemize}[leftmargin=*]
     \item Pendekatan penelitian
     \item Teknik pengumpulan data
