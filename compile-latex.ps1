@@ -3,7 +3,7 @@
 # Deskripsi: Mengkompilasi Template-Ujian-Kualifikasi-DJN.tex secara otomatis
 
 # Set nama file (tanpa ekstensi)
-$TexFile = "Template-Ujian-Kualifikasi-DJN"
+$TexFile = "kualifikasi"
 
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "  Kompilasi LaTeX Document" -ForegroundColor Cyan

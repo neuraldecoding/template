@@ -238,6 +238,9 @@
 % Title Page
 \maketitle
 
+% Halaman Depan menggunakan angka Romawi
+\pagenumbering{roman}
+
 % DAFTAR ISI
 \addcontentsline{toc}{section}{DAFTAR ISI}
 \tableofcontents
@@ -261,58 +264,19 @@
 % RINGKASAN
 \section*{RINGKASAN}
 \addcontentsline{toc}{section}{RINGKASAN}
-
-\begin{summary}
-Silakan tuliskan ringkasan berisi 200 kata sampai 300 kata dalam satu paragraf, yang menjelaskan latar belakang penelitian disertasi secara umum, tujuan, metode yang akan diusulkan atau akan digunakan, rencana kontribusi dari penelitian disertasi Anda.
-
-Paragraf ringkasan harus mencakup:
-\begin{itemize}[leftmargin=*]
-    \item Konteks dan latar belakang penelitian
-    \item Tujuan utama penelitian disertasi
-    \item Metodologi yang diusulkan
-    \item Kontribusi yang diharapkan dari penelitian
-\end{itemize}
-\end{summary}
+\input{chapters/ringkasan}
 
 \clearpage
 
 % BAB 1 - PENDAHULUAN
 \setcounter{section}{0}
+\pagenumbering{arabic} % Kembali ke angka Arab mulai dari Bab 1
+\setcounter{page}{1}   % Reset halaman ke 1
 \section*{BAB 1 \\ PENDAHULUAN}
 \addcontentsline{toc}{section}{BAB 1 PENDAHULUAN}
 \refstepcounter{section}
 
-\subsection{Latar Belakang dan Motivasi Penelitian}
-
-\begin{background}
-Pada bagian ini, jelaskan \textit{rationale} atau motivasi yang melatarbelakangi pemilihan topik penelitian disertasi. Bagian ini dapat menjelaskan tren penelitian atau berdasarkan referensi dari topik yang menjadi minat Anda \parencite{example2023}. Sertakan juga rujukan dari referensi yang menjadi acuan latar belakang penelitian disertasi Anda \parencite{textbook2020}.
-
-\textbf{Isi:} 100-200 kata, minimal 1 paragraf.
-\end{background}
-
-\subsection{Ringkasan Penelitian Terkait}
-
-\begin{literaturereview}
-Bagian ini berisi \textit{brief literature review}. Jelaskan penelitian-penelitian terkait hasil telaah terhadap penelitian sebelumnya yang paling mendekati dengan topik atau latar belakang disertasi Anda \parencite{conference2022}. Jelaskan juga keunggulan dan kekurangan dari penelitian sebelumnya, serta peluang penelitian lanjutan. Sertakan sitasi dari referensi utama.
-
-\textbf{Isi:} 100-200 kata, minimal 2-3 paragraf.
-\end{literaturereview}
-
-\subsection{Potensi Gap Penelitian atau Masalah yang Akan Diangkat}
-
-\begin{researchgap}
-Pada bagian ini, tuliskan identifikasi permasalahan atau potensi gap dari fenomena yang akan diangkat dalam disertasi berdasarkan latar belakang dan penelitian terkait. Jelaskan kesenjangan yang belum teratasi oleh penelitian sebelumnya dan bagaimana penelitian Anda akan mengatasinya.
-
-\textbf{Isi:} 100-200 kata, minimal 1 paragraf.
-\end{researchgap}
-
-\subsection{Potensi Kebaruan dari Penelitian yang Akan Dilakukan}
-
-\begin{novelty}
-Pada bagian ini, tuliskan bagaimana Anda membuktikan bahwa penelitian yang diajukan adalah baru dan orisinal (\textit{novel dan original}). Bagian ini dapat diisi dengan hasil \textit{systematic mapping study} atau \textit{meta analysis} untuk memetakan usulan topik disertasi terhadap teori atau metode terkini, sehingga dapat dibuktikan \textit{novelty} dan \textit{originality}-nya.
-
-\textbf{Isi:} 400-500 kata, minimal 3-5 paragraf.
-\end{novelty}
+\input{chapters/bab1}
 
 \clearpage
 
@@ -321,47 +285,7 @@ Pada bagian ini, tuliskan bagaimana Anda membuktikan bahwa penelitian yang diaju
 \addcontentsline{toc}{section}{BAB 2 LITERATURE REVIEW}
 \refstepcounter{section}
 
-\subsection{State-of-the-Art Penelitian}
-
-Bagian ini menjabarkan hasil \textit{systematic literature review} terhadap referensi utama serta yang berkaitan dengan topik penelitian disertasi \parencite{lawoyin2014}. Bagian ini ditulis minimal \textbf{4000 kata} dan maksimal \textbf{5000 kata}, dalam beberapa paragraf (fleksibel).
-
-Pada bagian ini \textbf{diakhiri dengan tabel} \textit{state-of-the-art} yang berisi ringkasan dari hasil \textit{systematic literature review}. Sumber pustaka atau referensi primer yang relevan dengan mengutamakan hasil penelitian ilmiah atau teknologi yang terkini. Disarankan penggunaan sumber pustaka 5 tahun terakhir (untuk prosiding konferensi) dan 10 tahun terakhir (bergantung pada relevansi teori atau metode) untuk jurnal atau buku teks.
-
-Pada bagian akhir tabel, sebutkan usulan penelitian disertasi Anda untuk melihat posisi penelitian Anda dalam \textit{state-of-the-art} penelitian.
-
-\begin{table}[htbp]
-    \caption{State-of-the-Art Penelitian}
-    \label{tab:sota}
-    \small
-    \begin{tabularx}{\textwidth}{@{} c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}l @{}}
-    \toprule
-    \textbf{No} & \textbf{Peneliti} & \textbf{Objective} & \textbf{Metode \& Hasil} & \textbf{Keterangan} \\
-    \midrule
-    
-    1 & \textcite{lawoyin2014} & 
-    Analisis sistem Holter EEG 3D secara real-time. & 
-    Pengolahan sinyal EEG dengan HPF, NFFT. Klasifikasi SVM. & 
-    Metode dasar \\
-    
-    \addlinespace
-    
-    2 & \textcite{example2023} & 
-    Meningkatkan akurasi deteksi kantuk. & 
-    Menggunakan Deep Learning (CNN) dengan dataset XYZ. Akurasi 95\%. & 
-    Metode modern \\
-    
-    \addlinespace
-    
-    3 & \textcite{textbook2020} & 
-    Teori dasar pengukuran sinyal biomedis. & 
-    Menjelaskan prinsip kerja EEG dan EKG konvensional. & 
-    Referensi teori \\
-    
-    \bottomrule
-    \end{tabularx}
-\end{table}
-
-Berdasarkan \textit{state-of-the-art} yang dibuat, berikan penjelasan tentang potensi gap penelitian yang dapat diangkat untuk penelitian disertasi Anda. Gunakan lebih dari satu tabel \textit{state-of-the-art} jika terdapat beberapa metode atau teori yang digunakan dari hasil eksplorasi Anda.
+\input{chapters/bab2}
 
 \clearpage
 
@@ -370,62 +294,7 @@ Berdasarkan \textit{state-of-the-art} yang dibuat, berikan penjelasan tentang po
 \addcontentsline{toc}{section}{BAB 3 TEORI / METODE TERKAIT}
 \refstepcounter{section}
 
-Pada bagian ini, tuliskan minimal \textbf{3000 kata} dan maksimal \textbf{4000 kata} dalam sub-bab atau beberapa paragraf. Tuliskan secara padat dan ringkas mengenai pemahaman atau penguasaan Anda terhadap teori atau metode yang relevan dan digunakan dalam disertasi.
-
-Misalnya, jika dalam disertasi digunakan \textit{intelligent control system} dengan \textit{Fuzzy Logic Type II}, tuliskan bagian-bagian penting tentang \textit{Fuzzy Logic Type II} yang digunakan dalam \textit{intelligent control system}.
-
-\subsection{Teori Dasar}
-
-Jelaskan teori-teori dasar yang menjadi fondasi penelitian Anda. Pastikan penjelasan mencakup:
-\begin{itemize}[leftmargin=*]
-    \item Definisi dan konsep fundamental
-    \item Prinsip-prinsip utama
-    \item Rumusan matematis yang relevan
-    \item Asumsi-asumsi yang digunakan
-\end{itemize}
-
-Contoh penulisan rumus matematika menggunakan \LaTeX. Persamaan \eqref{eq:entropy} menunjukkan rumus \textit{Shannon Entropy} untuk menghitung ketidakpastian informasi:
-
-\begin{equation}
-    H(X) = - \sum_{i=1}^{n} P(x_i) \log_2 P(x_i)
-    \label{eq:entropy}
-\end{equation}
-\myequations{Shannon Entropy}
-
-Dimana $H(X)$ adalah entropi, $n$ adalah jumlah kemungkinan kejadian, dan $P(x_i)$ adalah probabilitas kejadian $i$.
-
-Contoh rumus lain adalah \textit{Euclidean Distance} pada Persamaan \eqref{eq:euclidean}:
-
-\begin{equation}
-    d(p,q) = \sqrt{\sum_{i=1}^{n} (q_i - p_i)^2}
-    \label{eq:euclidean}
-\end{equation}
-\myequations{Euclidean Distance}
-
-
-\subsection{Metodologi Penelitian}
-
-Jelaskan metodologi penelitian yang akan digunakan, mencakup pendekatan penelitian, teknik pengumpulan data, dan analisis.
-
-\begin{figure}[htbp]
-    \centering
-    % Menggunakan logo-telkom.png sebagai dummy image
-    \includegraphics[width=0.5\textwidth]{logo-telkom.png}
-    \caption{Contoh Diagram Alir Penelitian (Dummy Figure)}
-    \label{fig:alur_penelitian}
-\end{figure}
-
-Setelah Gambar \ref{fig:alur_penelitian}, jelaskan langkah-langkah detailnya:
-\begin{itemize}[leftmargin=*]
-    \item Pendekatan penelitian
-    \item Teknik pengumpulan data
-    \item Metode analisis
-    \item Validasi dan verifikasi
-\end{itemize}
-
-\subsection{Alat dan Kerangka Kerja}
-
-Jelaskan alat, kerangka kerja, atau infrastruktur yang mendukung penelitian Anda.
+\input{chapters/bab3}
 
 % DAFTAR PUSTAKA
 \clearpage
