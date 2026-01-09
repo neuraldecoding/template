@@ -182,50 +182,41 @@
     {\textit{Potensi Kebaruan Penelitian (400-500 kata):}\\[0.5\baselineskip]}
     {}
 
-% Bibliography Style
+% Bibliography Style - APA-like with BibTeX
 \usepackage[
-    backend=bibtex,
-    style=authoryear, 
-    sorting=nyt,
-    dashed=false, % Jangan gunakan dash (-) untuk penulis yang sama berulang
-    maxbibnames=99, % Tampilkan semua nama penulis
-    giveninits=false % Tampilkan nama depan lengkap
+    backend=bibtex,   % Menggunakan BibTeX (biber tidak berfungsi di sistem ini)
+    style=authoryear, % Author-year citation style (APA-like)
+    sorting=nyt,      % Sort by name, year, title
+    maxbibnames=99,   % Tampilkan semua nama penulis
+    dashed=false,     % Jangan gunakan dash untuk author yang sama
 ]{biblatex}
 
 \addbibresource{references.bib}
 
-% Custom citation format (Author, Year)
-\renewcommand*{\nameyeardelim}{\addcomma\space}
-\renewcommand*{\finalnamedelim}{\space\&\space} % Menggunakan tanda & antar penulis
+% Make \cite behave like \parencite (with parentheses)
+\let\cite\parencite
 
-% Fix untuk mencegah teks melebihi margin
-\emergencystretch=1em
-\setlength{\bibhang}{1cm}
+% Custom citation formatting
+\renewcommand*{\finalnamedelim}{\addspace\&\addspace}  % Ubah "and" jadi "&"
+\renewcommand*{\nameyeardelim}{\addcomma\space}        % Tambahkan koma setelah author
+
+% Fix spasi antara "In" dan judul italic
+\renewbibmacro{in:}{%
+  \printtext{\bibstring{in}\intitlepunct\addspace}}
+
+% Custom format untuk memastikan ada spasi setelah "in"
+\DeclareFieldFormat{booktitle}{\addspace\textit{#1}}
+\DeclareFieldFormat{journaltitle}{\addspace\textit{#1}}
 
 % Fix URL breaking untuk mencegah overflow
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
 
 % Set bibliography to use ragged right alignment untuk mencegah overfull
+\emergencystretch=1em
 \appto{\bibsetup}{\sloppy\RaggedRight}
 
-% Format bibliography entries dengan tanda petik untuk judul
-\DeclareFieldFormat[article]{title}{"#1"}
-\DeclareFieldFormat[inproceedings]{title}{"#1"}
-\DeclareFieldFormat[book]{title}{#1}
-\DeclareFieldFormat[incollection]{title}{"#1"}
 
-% Format booktitle dengan italic dan dalam petik
-\DeclareFieldFormat{booktitle}{\textit{#1}}
-\DeclareFieldFormat{journaltitle}{\textit{#1}}
-
-% Fix spasi antara "In" dan judul italic
-\renewbibmacro{in:}{%
-  \printtext{\bibstring{in}\intitlepunct\space}}
-
-% Custom format untuk memastikan ada spasi setelah "in"
-\DeclareFieldFormat{booktitle}{\addspace\textit{#1}}
-\DeclareFieldFormat{journaltitle}{\addspace\textit{#1}}
 
 % Set document metadata
 \myTitle{Judul Disertasi Anda}
