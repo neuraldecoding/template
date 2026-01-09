@@ -66,6 +66,28 @@
 \renewcommand{\cfttoctitlefont}{\hfill\fontsize{16}{19}\selectfont\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
 
+% List of Tables customization
+\renewcommand{\listtablename}{DAFTAR TABEL}
+\renewcommand{\cftlottitlefont}{\hfill\fontsize{16}{19}\selectfont\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill}
+
+% List of Figures customization
+\renewcommand{\listfigurename}{DAFTAR GAMBAR}
+\renewcommand{\cftloftitlefont}{\hfill\fontsize{16}{19}\selectfont\bfseries}
+\renewcommand{\cftafterloftitle}{\hfill}
+
+% List of Equations setup
+\newcommand{\listequationsname}{DAFTAR RUMUS}
+\newlistof{myequations}{equ}{\listequationsname}
+\newcommand{\myequations}[1]{%
+\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par}
+\renewcommand{\cftequtitlefont}{\hfill\fontsize{16}{19}\selectfont\bfseries}
+\renewcommand{\cftafterequtitle}{\hfill}
+\setlength{\cftmyequationsindent}{0pt}
+
+% Redefine \listofequations to use the custom list
+\newcommand{\listofequations}{\listofmyequations}
+
 % Subsection numbering format
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 
@@ -194,6 +216,21 @@
 % DAFTAR ISI
 \addcontentsline{toc}{section}{DAFTAR ISI}
 \tableofcontents
+\clearpage
+
+% DAFTAR TABEL
+\addcontentsline{toc}{section}{DAFTAR TABEL}
+\listoftables
+\clearpage
+
+% DAFTAR GAMBAR
+\addcontentsline{toc}{section}{DAFTAR GAMBAR}
+\listoffigures
+\clearpage
+
+% DAFTAR RUMUS
+\addcontentsline{toc}{section}{DAFTAR RUMUS}
+\listofequations
 \clearpage
 
 % RINGKASAN
@@ -328,6 +365,7 @@ Contoh penulisan rumus matematika menggunakan \LaTeX. Persamaan \eqref{eq:entrop
     H(X) = - \sum_{i=1}^{n} P(x_i) \log_2 P(x_i)
     \label{eq:entropy}
 \end{equation}
+\myequations{Shannon Entropy}
 
 Dimana $H(X)$ adalah entropi, $n$ adalah jumlah kemungkinan kejadian, dan $P(x_i)$ adalah probabilitas kejadian $i$.
 
@@ -337,6 +375,7 @@ Contoh rumus lain adalah \textit{Euclidean Distance} pada Persamaan \eqref{eq:eu
     d(p,q) = \sqrt{\sum_{i=1}^{n} (q_i - p_i)^2}
     \label{eq:euclidean}
 \end{equation}
+\myequations{Euclidean Distance}
 
 
 \subsection{Metodologi Penelitian}
