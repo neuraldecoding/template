@@ -4,10 +4,64 @@
 Template LaTeX ini telah disesuaikan untuk memenuhi standar format Ujian Kualifikasi.
 
 ## 📁 Struktur File
-- `Template-Ujian-Kualifikasi-DJN.tex` : File utama LaTeX.
-- `references.bib` : File database referensi (BibTeX).
+- `kualifikasi.tex` : File utama LaTeX.
+- `references.bib`, `all.bib`, `visual.bib`, `transeeg.bib` : File database referensi (BibTeX).
 - `logo-telkom.png` : Logo universitas (wajib ada).
 - `compile-latex.ps1` : Script PowerShell untuk kompilasi otomatis.
+- `chapters/` : Direktori berisi file-file bab (bab1.tex, bab2.tex, bab3.tex, ringkasan.tex, lampiran.tex).
+
+## 📦 Instalasi Package LaTeX
+
+Template ini memerlukan beberapa package LaTeX yang harus diinstall terlebih dahulu. Gunakan **TeX Live Manager (tlmgr)** untuk instalasi.
+
+### Instalasi Otomatis (Semua Package Sekaligus)
+```bash
+tlmgr install mathptmx psnfss courier helvet amsmath babel geometry setspace titlesec graphicx hyperref booktabs array caption enumitem parskip fancyhdr tocloft tabularx longtable ragged2e biblatex logreq bibtex
+```
+
+### Instalasi Manual (Per Package)
+Jika instalasi otomatis gagal, install satu per satu:
+
+```bash
+# Font packages
+tlmgr install mathptmx psnfss courier helvet
+
+# Math and language
+tlmgr install amsmath babel
+
+# Page layout and formatting
+tlmgr install geometry setspace titlesec parskip
+
+# Graphics and figures
+tlmgr install graphicx
+
+# Hyperlinks and references
+tlmgr install hyperref
+
+# Tables
+tlmgr install booktabs array tabularx longtable
+
+# Captions and lists
+tlmgr install caption enumitem tocloft
+
+# Headers and footers
+tlmgr install fancyhdr
+
+# Text formatting
+tlmgr install ragged2e
+
+# Bibliography (BibLaTeX)
+tlmgr install biblatex logreq bibtex
+```
+
+### Verifikasi Instalasi
+Setelah instalasi, verifikasi dengan:
+```bash
+tlmgr list --only-installed | grep -E "(mathptmx|biblatex|longtable|ragged2e)"
+```
+
+### Catatan untuk TinyTeX
+Jika menggunakan TinyTeX, package akan otomatis terinstall saat kompilasi pertama kali. Pastikan koneksi internet aktif.
 
 ## 🚀 Cara Kompilasi (Build)
 Untuk menghasilkan PDF yang lengkap dengan Daftar Pustaka, Daftar Isi, Daftar Tabel, Daftar Gambar, dan Daftar Rumus yang benar, Anda harus menjalankan perintah berikut secara berurutan:
@@ -21,10 +75,10 @@ Script ini akan otomatis menjalankan semua tahapan kompilasi (pdflatex → bibte
 
 ### Menggunakan Terminal / Command Prompt
 ```bash
-pdflatex Template-Ujian-Kualifikasi-DJN.tex
-bibtex Template-Ujian-Kualifikasi-DJN
-pdflatex Template-Ujian-Kualifikasi-DJN.tex
-pdflatex Template-Ujian-Kualifikasi-DJN.tex
+pdflatex kualifikasi.tex
+bibtex kualifikasi
+pdflatex kualifikasi.tex
+pdflatex kualifikasi.tex
 ```
 
 ### Menggunakan Editor LaTeX (TexMaker, TeXStudio, Overleaf)
@@ -33,18 +87,21 @@ Biasanya cukup menekan tombol **Build** atau **Compile**. Pastikan konfigurasi e
 ## 📝 Panduan Penggunaan
 
 ### 1. Data Diri & Judul
-Ubah data berikut di bagian awal file `.tex` (sekitar baris 198-200):
+Ubah data berikut di bagian awal file `.tex` (sekitar baris 236-239):
 ```latex
-\myTitle{JUDUL DISERTASI ANDA DI SINI}
-\myNIM{1234567890}
-\myName{Nama Lengkap Anda}
+\myTitle{Judul Disertasi Anda}
+\myNIM{303012510004}
+\myName{Rolly Maulana Awangga}
 \myYear{2026}
 ```
 
 ### 2. Menulis Konten
-- **Pendahuluan**: Edit di bawah section `BAB 1 PENDAHULUAN`.
-- **Literature Review**: Edit di bawah section `BAB 2 LITERATURE REVIEW`.
-- **Metodologi**: Edit di bawah section `BAB 3 TEORI / METODE TERKAIT`.
+Konten disertasi diorganisir dalam direktori `chapters/`:
+- **Ringkasan**: Edit file `chapters/ringkasan.tex`
+- **Pendahuluan**: Edit file `chapters/bab1.tex`
+- **Literature Review**: Edit file `chapters/bab2.tex`
+- **Teori/Metode Terkait**: Edit file `chapters/bab3.tex`
+- **Lampiran**: Edit file `chapters/lampiran.tex`
 
 ### 3. Menambahkan Tabel
 Gunakan environment `table` dengan `\caption{}`:
@@ -95,10 +152,14 @@ Gunakan format `tabularx` yang sudah disediakan.
 - Gunakan `\addlinespace` antar baris agar lebih rapi.
 
 ### 7. Menambahkan Referensi
-1. Buka file `references.bib`.
+1. Buka file bibliography yang sesuai:
+   - `references.bib` - Referensi umum
+   - `all.bib` - Semua referensi
+   - `visual.bib` - Referensi terkait visual
+   - `transeeg.bib` - Referensi terkait EEG
 2. Tambahkan entri referensi baru (format BibTeX).
 3. Di dalam teks (`.tex`), panggil referensi menggunakan:
-   - `\parencite{key}` untuk hasil `(Author, 2024)`
+   - `\cite{key}` atau `\parencite{key}` untuk hasil `(Author, 2024)`
    - `\textcite{key}` untuk hasil `Author (2024)`
 
 ### 8. Format Sitasi
