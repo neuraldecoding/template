@@ -8,7 +8,9 @@
 % Packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{times}
+\usepackage{mathptmx} % Times New Roman
+\usepackage{courier}  % Courier for monospace
+\usepackage{helvet}   % Helvetica for sans-serif
 \usepackage{amsmath}
 \usepackage[english,indonesian]{babel}
 \usepackage{geometry}
@@ -18,12 +20,13 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{caption}
+\usepackage[format=hang,font=footnotesize,labelfont=bf]{caption}
 \usepackage{enumitem}
 \usepackage{parskip}
 \usepackage{fancyhdr}
 \usepackage{tocloft}
 \usepackage{tabularx}
+\usepackage{longtable}
 \usepackage{ragged2e}  % For better text justification in bibliography
 
 % Page Setup
@@ -102,8 +105,8 @@
 \makeatletter
 % Initialize default values
 \def\@myTitle{Judul Disertasi}
-\def\@myNIM{NIM}
-\def\@myName{Nama Mahasiswa}
+\def\@myNIM{303012510004}
+\def\@myName{Rolly Maulana Awangga}
 \def\@myYear{Tahun}
 
 \renewcommand{\maketitle}{
@@ -113,9 +116,7 @@
         
         % Judul Disertasi (bagian atas)
         {\fontsize{16}{20}\selectfont
-        \textbf{Judul Disertasi: Dituliskan Singkat dan Spesifik (Tuliskan semua judul disertasi.}\par
-        \textbf{Secara umum untuk menjelaskan judul proposal penelitian dapat mengikuti pola:}\par
-        \textbf{Metode yang diusulkan -- Tujuan -- Objek area area of interest)}\par}
+        \textbf{Visual Neural Decoding}\par}
         
         \vspace{1.5cm}
         
@@ -131,15 +132,18 @@
         \textbf{\@myName}\par}
         
         \vspace{1.5cm}
+        \vspace{1.5cm}
+        \vspace{1.5cm}
+     
         
         % Logo Universitas Telkom
         \IfFileExists{logo-telkom.png}{
-            \includegraphics[width=0.35\textwidth]{logo-telkom.png}
+            \includegraphics[width=0.5\textwidth]{logo-telkom.png}
         }{
             {\fontsize{16}{19}\bfseries Universitas Telkom\par}
         }
         
-        \vspace{1.5cm}
+        \vfill
         
         % Program Studi dan Informasi
         {\fontsize{16}{19}\selectfont
@@ -189,10 +193,17 @@
     sorting=nyt,      % Sort by name, year, title
     maxbibnames=99,   % Tampilkan semua nama penulis
     dashed=false,     % Jangan gunakan dash untuk author yang sama
+    url=false,        % Jangan tampilkan URL
+    doi=true,         % Tampilkan DOI
 ]{biblatex}
 
+\urlstyle{same} % Samakan font URL/DOI dengan teks utama
+
 \addbibresource{references.bib}
-% \addbibresource{pustaka_tambahan.bib} % Uncomment jika ingin menggunakan file bib tambahan
+\addbibresource{all.bib}
+\addbibresource{visual.bib}
+\addbibresource{transeeg.bib}
+%\addbibresource{visualdecoding.bib} % Uncomment jika ingin menggunakan file bib tambahan
 
 % Make \cite behave like \parencite (with parentheses)
 \let\cite\parencite
@@ -201,9 +212,11 @@
 \renewcommand*{\finalnamedelim}{\addspace\&\addspace}  % Ubah "and" jadi "&"
 \renewcommand*{\nameyeardelim}{\addcomma\space}        % Tambahkan koma setelah author
 
-% Fix spasi antara "In" dan judul italic
-\renewbibmacro{in:}{%
-  \printtext{\bibstring{in}\intitlepunct\addspace}}
+% Remove "In:" from bibliography
+\renewbibmacro{in:}{}
+
+% Ensure pages are not bold
+\DeclareFieldFormat{pages}{\normalfont #1}
 
 % Custom format untuk memastikan ada spasi setelah "in"
 \DeclareFieldFormat{booktitle}{\addspace\textit{#1}}
@@ -221,8 +234,8 @@
 
 % Set document metadata
 \myTitle{Judul Disertasi Anda}
-\myNIM{1234567890}
-\myName{Nama Lengkap Anda}
+\myNIM{303012510004}
+\myName{Rolly Maulana Awangga}
 \myYear{2026}
 
 % Beginning of Document
@@ -243,27 +256,33 @@
 \pagenumbering{roman}
 
 % DAFTAR ISI
+\phantomsection
 \addcontentsline{toc}{section}{DAFTAR ISI}
 \tableofcontents
 \clearpage
 
 % DAFTAR TABEL
+\phantomsection
 \addcontentsline{toc}{section}{DAFTAR TABEL}
 \listoftables
 \clearpage
 
 % DAFTAR GAMBAR
+\phantomsection
 \addcontentsline{toc}{section}{DAFTAR GAMBAR}
 \listoffigures
 \clearpage
 
 % DAFTAR RUMUS
+\phantomsection
 \addcontentsline{toc}{section}{DAFTAR RUMUS}
 \listofequations
 \clearpage
 
 % RINGKASAN
+\clearpage
 \section*{RINGKASAN}
+\phantomsection
 \addcontentsline{toc}{section}{RINGKASAN}
 \input{chapters/ringkasan}
 
@@ -274,6 +293,7 @@
 \pagenumbering{arabic} % Kembali ke angka Arab mulai dari Bab 1
 \setcounter{page}{1}   % Reset halaman ke 1
 \section*{BAB 1 \\ PENDAHULUAN}
+\phantomsection
 \addcontentsline{toc}{section}{BAB 1 PENDAHULUAN}
 \refstepcounter{section}
 
@@ -283,6 +303,7 @@
 
 % BAB 2 - LITERATURE REVIEW
 \section*{BAB 2 \\ LITERATURE REVIEW}
+\phantomsection
 \addcontentsline{toc}{section}{BAB 2 LITERATURE REVIEW}
 \refstepcounter{section}
 
@@ -292,6 +313,7 @@
 
 % BAB 3 - TEORI / METODE TERKAIT
 \section*{BAB 3 \\ TEORI / METODE TERKAIT}
+\phantomsection
 \addcontentsline{toc}{section}{BAB 3 TEORI / METODE TERKAIT}
 \refstepcounter{section}
 
@@ -300,8 +322,16 @@
 % DAFTAR PUSTAKA
 \clearpage
 \section*{DAFTAR PUSTAKA}
+\phantomsection
 \addcontentsline{toc}{section}{DAFTAR PUSTAKA}
 
 \printbibliography[heading=none]
+
+\clearpage
+
+
+\input{chapters/lampiran}
+
+\clearpage
 
 \end{document}
